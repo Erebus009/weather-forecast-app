@@ -1,0 +1,25 @@
+:root{
+    --blue:#319B9E;
+    --card: #D0F2FD;
+    --back: #859AA1;
+}
+
+
+
+header {
+    height: 20vh;
+    justify-content: center;
+    align-items: center;
+}
+.display-3 {
+    padding-top: 30px;
+}
+.sun{
+    font-size: 3rem;
+}
+
+@media only screen and (max-width: 600px) {
+    .sun {
+      font-size: 2rem;
+  }
+}
