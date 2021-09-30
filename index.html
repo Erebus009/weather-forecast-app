@@ -11,9 +11,29 @@
 <body>
     <header class="bg-dark text-center">
         <h1 class="display-3 text-light">Weather Forecaster <span class="sun">☀</span></h1>
-        <p></p>
+        <p class="text-light">Forecasts the weather for the next 5 days based on data location interacing with an API.</p>
     </header>
+    <main>
+
+    <form id="left-form" class="col-3" action="">
+        <div  class="from-group">
+            <label  class= "col-12 text-center" for="city">Type in a city.</label>
+        </div>
+            <input class="col-12 row-2 input" type="text" name="city-input" id="city">
+        </div>
+        <div>
+            <button class="btn btn-secondary col-12 text-center-center">Submit</button>
+        </div>
+    </form>
     
+    <div class="container">
+        <div class="col-2" id="Day1"></div>
+        <div class="col-2" id="Day2"></div>
+        <div class="col-2" id="Day3"></div>
+        <div class="col-2" id="Day4"></div>
+        <div class="col-2" id="Day5"></div>
+    </div>
+    </main>
 </body>
 <script src="./assets/script.js"></script>
 </html>

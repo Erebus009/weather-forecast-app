@@ -1,25 +1,38 @@
-:root{
-    --blue:#319B9E;
-    --card: #D0F2FD;
-    --back: #859AA1;
+:root {
+  --blue: #319b9e;
+  --card: #d0f2fd;
+  --back: #a4bdc5;
 }
-
-
 
 header {
-    height: 20vh;
-    justify-content: center;
-    align-items: center;
+  height: 160px;
+  justify-content: center;
+  align-items: center;
 }
 .display-3 {
-    padding-top: 30px;
+  padding-top: 10px;
 }
-.sun{
-    font-size: 3rem;
+.sun {
+  font-size: 3rem;
+}
+#left-form { 
+    background-color: var(--back);
+    border-radius: 20px;
+    margin-top: 20px;
+    margin-left: 100px;
+    
+}
+.input {
+    margin: auto;
+}
+label{
+    font-size: 2em;
 }
 
+
+
 @media only screen and (max-width: 600px) {
-    .sun {
-      font-size: 2rem;
+  .sun {
+    font-size: 2rem;
   }
 }
