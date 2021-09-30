@@ -14,25 +14,37 @@
         <p class="text-light">Forecasts the weather for the next 5 days based on data location interacing with an API.</p>
     </header>
     <main>
+    <div class=" container.fluid city-sub">
+        <div class="row">
+            
+            <div class="weather-submit col-sm-3">
+                
+                <label for="city-input">Search for a City:</label>
+                <input id="city-input" class="col-12 mt-1" placeholder="Orlando" type="text"></input>
+                <button type ="button" class="btn col-12 text-light mt-4 mb-2 rounded searchBtn">Search</button>
+                
+                <div id="Underline" class=" col-12 column mt-3"></div>
+            </div> 
 
-    <form id="left-form" class="col-3" action="">
-        <div  class="from-group">
-            <label  class= "col-12 text-center" for="city">Type in a city.</label>
+            
+            <div class="jumbotron-1 h-55 col-sm-8">
+                <div class="column">
+                    <div>test</div>
+                    <div>test</div>
+                </div>
+            </div>
+                
+                `
+                
+
+          
+            
         </div>
-            <input class="col-12 row-2 input" type="text" name="city-input" id="city">
-        </div>
-        <div>
-            <button class="btn btn-secondary col-12 text-center-center">Submit</button>
-        </div>
-    </form>
-    
-    <div class="container">
-        <div class="col-2" id="Day1"></div>
-        <div class="col-2" id="Day2"></div>
-        <div class="col-2" id="Day3"></div>
-        <div class="col-2" id="Day4"></div>
-        <div class="col-2" id="Day5"></div>
     </div>
+    
+
+    
+</div>
     </main>
 </body>
 <script src="./assets/script.js"></script>
