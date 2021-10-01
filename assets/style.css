@@ -18,6 +18,12 @@ header {
   border-top: black solid 1px;
 }
 
+.card {
+  border: none;
+}
+.border {
+  border: solid 1px black;
+}
 
 .sun {
   font-size: 3rem;
@@ -52,8 +58,9 @@ label{
   .weather-submit {
     height: auto;
   }
-  .jumbotron-1 {
-    width: 100%;
+  .card {
+    width: 60%;
     overflow: hidden;
+    margin-left: 50px;
   }
 }
