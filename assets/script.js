@@ -19,7 +19,7 @@ var submitHandler = function (event) {
         inputEL.textContent='';
         inputEL.value='';
         appendLastCity(city);
-        displayCityWeather(city);
+        getCityWeather(city);
         
     } 
     
@@ -55,7 +55,8 @@ var appendLastCity = function (city) {
     .then(function (response) {
       if (response.status === 200) {
         response.json().then(function(data) {
-            displayCityWeather(data,city);
+            console.log(data);
+            // displayCityWeather(data,city);
             
         });
     }else{
@@ -69,6 +70,10 @@ var appendLastCity = function (city) {
     
         
 }
+
+// var displayCityWeather = function (params) {
+    
+// }
 
 searchBtn.addEventListener("click", submitHandler);
 
