@@ -56,7 +56,7 @@ var appendLastCity = function (city) {
       if (response.status === 200) {
         response.json().then(function(data) {
             console.log(data);
-            // displayCityWeather(data,city);
+            displayCityWeather(data,city);
             
         });
     }else{
@@ -65,15 +65,21 @@ var appendLastCity = function (city) {
       
     })
     
-    
-  return;
-    
-        
-}
+    .catch(function (error) {
+        alert('Unable to connect to Openweather API');
+      });
+  };
 
-// var displayCityWeather = function (params) {
-    
-// }
+var displayCityWeather = function (data, city) {
+
+    var CityEL = document.querySelector('.weather-info')
+
+    var CityNameEL = document.createElement('h1');
+    CityNameEL.textContent = data.city.name;
+
+
+    CityEL.appendChild(CityNameEL);
+}
 
 searchBtn.addEventListener("click", submitHandler);
 
