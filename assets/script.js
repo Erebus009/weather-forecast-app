@@ -19,7 +19,7 @@ var submitHandler = function (event) {
         inputEL.textContent='';
         inputEL.value='';
         appendLastCity(city);
-        getCityWeather(city);
+        getCityCords(city);
         
     } 
     
@@ -46,9 +46,51 @@ var appendLastCity = function (city) {
   }
 
 
- var getCityWeather = function(city) {
+ var getCityCords = function (city) {
+  url = 'https://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=0bc4f134f7113eaee48d311d5efa7749'
+  console.log(url);
+  fetch(url)
+  .then(function (response) {
+    if (response.status === 200) {
+      response.json().then(function(data) {
+          console.log(data);
+          setCurrentWeather(data);
+          var CityEL = document.querySelector('.weather-info')
+
+          var CityNameEL = document.createElement('h1');
+          CityNameEL.textContent = data.name + moment().format("   (MMM Do YY)");
+
+          CityEL.appendChild(CityNameEL);
+
+          
+      });
+  }else{
+      alert('Error ' + response.statusText);
+    }
     
-    var url ="https://api.openweathermap.org/data/2.5/forecast?q=" + city + ",us&limit=5&appid=0bc4f134f7113eaee48d311d5efa7749";
+  })
+  
+  .catch(function (error) {
+      alert('Unable to connect to Openweather API');
+    });
+};
+   
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ var setCurrentWeather = function(data) {
+    var lon = data.coord.lon
+    var lat = data.coord.lat
+
+
+    var url = 'https://api.openweathermap.org/data/2.5/onecall?lat=' + lat  + "&lon=" + lon  + '&exclude=hourly,minutely,alerts&units=imperial&appid=0bc4f134f7113eaee48d311d5efa7749';
     
     console.log(url);
     fetch(url)
@@ -56,7 +98,7 @@ var appendLastCity = function (city) {
       if (response.status === 200) {
         response.json().then(function(data) {
             console.log(data);
-            displayCityWeather(data,city);
+            displayCurrent(data);
             
         });
     }else{
@@ -69,18 +111,32 @@ var appendLastCity = function (city) {
         alert('Unable to connect to Openweather API');
       });
   };
-
-var displayCityWeather = function (data, city) {
+  
+var displayCurrent = function (data, city) {
 
     var CityEL = document.querySelector('.weather-info')
 
-    var CityNameEL = document.createElement('h1');
-    CityNameEL.textContent = data.city.name;
+    
+
+    var WindSpeedEL = document.createElement('h2')
+    WindSpeedEL.textContent = 'Wind: ' + data.current.wind_speed + ' MPH'
+
+    var HumidityEL = document.createElement('h2');
+    HumidityEL.textContent = 'Humidity ' + data.current.humidity + ' %';
+
+    var UVindexEL = document.createElement('h2'); 
+    
+    UVindexEL.textContent = 'UV Index: ' + data.current.uvi;
 
 
-    CityEL.appendChild(CityNameEL);
+    
+    CityEL.appendChild(WindSpeedEL);
+    CityEL.appendChild(HumidityEL)
+    CityEL.appendChild(UVindexEL).addClass('backgroundIndex')
+    CityEL.appendChild()
+
+
 }
 
+
 searchBtn.addEventListener("click", submitHandler);
-
-
