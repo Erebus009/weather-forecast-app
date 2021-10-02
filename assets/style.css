@@ -4,6 +4,10 @@
   --back: #a4bdc5;
 }
 
+p{
+  height: 15%;
+}
+
 header {
   height: 120px;
   justify-content: center;
@@ -21,8 +25,10 @@ header {
 .card {
   border: none;
 }
-.border {
-  border: solid 1px black;
+.border-card {
+  border: solid 3px black;
+  height: 400px;
+  margin-top: 20px;
 }
 
 .sun {
@@ -45,6 +51,7 @@ header {
 
 }
 
+
 label{
     font-size: 2em;
     font-weight: 800;
@@ -60,7 +67,6 @@ label{
   }
   .card {
     width: 60%;
-    overflow: hidden;
     margin-left: 50px;
   }
 }
