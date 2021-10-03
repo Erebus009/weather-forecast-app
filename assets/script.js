@@ -77,8 +77,7 @@ var appendLastCity = function (city) {
    
  
  
- 
- 
+
  
  
  
@@ -116,24 +115,28 @@ var displayCurrent = function (data, city) {
 
     var CityEL = document.querySelector('.weather-info')
 
-    
+    var TempEL = document.createElement('h3')
+    TempEL.textContent = 'Temp : ' + data.current.temp + '°F';
 
-    var WindSpeedEL = document.createElement('h2')
+    var WindSpeedEL = document.createElement('h3')
     WindSpeedEL.textContent = 'Wind: ' + data.current.wind_speed + ' MPH'
 
-    var HumidityEL = document.createElement('h2');
+    var HumidityEL = document.createElement('h3');
     HumidityEL.textContent = 'Humidity ' + data.current.humidity + ' %';
 
-    var UVindexEL = document.createElement('h2'); 
+    var UVindexEL = document.createElement('h3'); 
     
-    UVindexEL.textContent = 'UV Index: ' + data.current.uvi;
-
-
+    UVindexEL.textContent = 'UV Index: ' 
     
+    var UVindexELColor = document.createElement('span')
+    UVindexELColor.classList.add('backgroundIndex');
+    UVindexELColor.textContent = data.current.uvi;
+    
+    CityEL.appendChild(TempEL)
     CityEL.appendChild(WindSpeedEL);
     CityEL.appendChild(HumidityEL)
-    CityEL.appendChild(UVindexEL).addClass('backgroundIndex')
-    CityEL.appendChild()
+    CityEL.appendChild(UVindexEL).appendChild(UVindexELColor)
+    
 
 
 }
