@@ -134,6 +134,7 @@ var displayCurrent = function (data, city) {
   // 5 day forecast h1 element. 
  var dayforecast = document.querySelector('.day-forecast');
  var days = document.createElement('h1')
+
  days.textContent= 'Five Day Forecast:'
  dayforecast.appendChild(days);
  
@@ -276,7 +277,7 @@ Day5.classList.add('forecast');
     UVindexEL.textContent = 'UV Index: ' 
     
     var UVindexELColor = document.createElement('span')
-    UVindexELColor.classList.add('backgroundIndex');
+    UVindexELColor.classList.add('UV');
     UVindexELColor.textContent = data.current.uvi;
     
     
@@ -343,9 +344,28 @@ Day5.classList.add('forecast');
     img5.attr('src', iconurl5);
     img5.appendTo('.icon5');
 
+    var UV = data.current.uvi;
+    console.log(UV);
+    if (UV > 3 && UV < 6.99){
+      var UvEl= document.querySelector('.UV');
+      UvEl.classList.remove('UV')
+      UvEl.classList.add('UV2')
 
+
+    }
+    if (UV > 7){
+      var UvEl= document.querySelector('.UV');
+      UvEl.classList.remove('UV')
+      UvEl.classList.add('UV3')
+
+
+    }
 
 }
+
+
+
+
 
 // Search when button is clicked runs submit handler to gather api data about what city was searched. 
 searchBtn.addEventListener("click", submitHandler);
