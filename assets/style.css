@@ -12,7 +12,7 @@ header {
   height: 120px;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(0.25turn,#6756c9, #1ad3da);
+  background: linear-gradient(0.25turn,#413299, #1ad3da);
   
 }
  .searchBtn{
@@ -71,6 +71,14 @@ h3 {
   border-radius: 10px;
 
 }
+.forecast{
+  background-color: rgb(111, 193, 218);
+  border-radius: 5px;
+  color: white;
+  padding: 10px;
+}
+
+
 label{
     font-size: 2em;
     font-weight: 800;
