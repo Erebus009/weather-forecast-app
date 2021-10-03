@@ -17,13 +17,14 @@ var submitHandler = function (event) {
     var city = inputEL.value.trim();
     
     if (city){
+      var forecast = document.querySelector('.day-forecast')
       var Day1 = document.querySelector('.card-body-day1')
       var Day2 = document.querySelector('.card-body-day2');
       var Day3 = document.querySelector('.card-body-day3');
       var Day4 = document.querySelector('.card-body-day4');
       var Day5 = document.querySelector('.card-body-day5');
         var CityEL = document.querySelector('.weather-info')
-        
+        forecast.innerHTML='';
         Day1.innerHTML='';
         Day2.innerHTML='';
         Day3.innerHTML='';
@@ -130,9 +131,15 @@ var appendLastCity = function (city) {
   
 var displayCurrent = function (data, city) {
     
+ var dayforecast = document.querySelector('.day-forecast');
+ var days = document.createElement('h1')
+ days.textContent= 'Five Day Forecast:'
+ dayforecast.appendChild(days);
+ 
+ 
 
   
-  var iconcode = data.weather[0];
+  var iconcode = data.current.weather[0].icon;
   var iconurl = "http://openweathermap.org/img/w/" + iconcode + ".png";
 
   
@@ -141,7 +148,7 @@ var displayCurrent = function (data, city) {
     // city weather box selector.
      var CityEL = document.querySelector('.weather-info')
      CityEL.classList.add('cityWeather') 
-  $('cityWeather').attr('src',iconurl)
+    $('cityWeather').attr('src',iconurl)
     // day 1 forecast selectors. 
     var DatesEl =document.createElement('h4');
     DatesEl.textContent = moment().add(1, 'days').format('D/MM/YY')
@@ -260,22 +267,22 @@ Day5.classList.add('forecast');
     Day1.appendChild(TempEL2);
     Day1.appendChild(WindSpeedEL2);
     Day1.appendChild(HumidityEL2);
-
+    // day 2 forecast
     Day2.appendChild(DatesEl2)
     Day2.appendChild(TempEL3);
     Day2.appendChild(WindSpeedEL3);
     Day2.appendChild(HumidityEL3);
-
+   // day 3 forecast`
     Day3.appendChild(DatesEl3)
     Day3.appendChild(TempEL4);
     Day3.appendChild(WindSpeedEL4);
     Day3.appendChild(HumidityEL4);
-
+    // day 4 forecast
     Day4.appendChild(DatesEl4)
     Day4.appendChild(TempEL5);
     Day4.appendChild(WindSpeedEL5);
     Day4.appendChild(HumidityEL5);
-
+    // day 5 forecast
     Day5.appendChild(DatesEl5)
     Day5.appendChild(TempEL6);
     Day5.appendChild(WindSpeedEL6);
@@ -286,5 +293,5 @@ Day5.classList.add('forecast');
 }
 
 
-
+// Search when button is clicked runs submit handler to gather api data about what city was searched. 
 searchBtn.addEventListener("click", submitHandler);
