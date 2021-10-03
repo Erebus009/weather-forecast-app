@@ -4,6 +4,7 @@ var cityWeatherEL = document.querySelector(".weather-info");
 var fiveDayForecast = document.querySelector(".card-weather");
 var inputEL = document.querySelector('#city-input')
 
+
 // var url ="https://api.openweathermap.org/data/2.5/forecast?q=" + city + ",us&limit=5&appid=0bc4f134f7113eaee48d311d5efa7749";
 
 
@@ -16,6 +17,8 @@ var submitHandler = function (event) {
     var city = inputEL.value.trim();
     
     if (city){
+        var CityEL = document.querySelector('.weather-info')
+        CityEL.innerHTML='';
         inputEL.textContent='';
         inputEL.value='';
         appendLastCity(city);
@@ -30,7 +33,8 @@ var appendLastCity = function (city) {
 
   console.log("test");
 
-  
+    
+
 
     var parent = document.querySelector(".previous");
 
@@ -59,6 +63,7 @@ var appendLastCity = function (city) {
 
           var CityNameEL = document.createElement('h1');
           CityNameEL.textContent = data.name + moment().format("   (MMM Do YY)");
+          
 
           CityEL.appendChild(CityNameEL);
 
@@ -112,8 +117,25 @@ var appendLastCity = function (city) {
   };
   
 var displayCurrent = function (data, city) {
-
+    
+    
+    var ForecastEL = document.querySelector('.card-body')
     var CityEL = document.querySelector('.weather-info')
+    
+    var DatesEl =document.createElement('h4');
+    DatesEl.textContent = moment().format('D/MM/YYYY')
+
+    var TempEL2 =document.createElement('p')
+    TempEL2.textContent = 'Temp : ' + data.current.temp + '°F';
+    
+    var WindSpeedEL2 =document.createElement('p')
+    WindSpeedEL2.textContent = 'Wind: ' + data.daily[0].wind_speed + ' MPH'
+    
+    var HumidityEL2 =document.createElement('p')
+    HumidityEL2.textContent = 'Humidity ' + data.daily[0].humidity + ' %';
+
+    
+
 
     var TempEL = document.createElement('h3')
     TempEL.textContent = 'Temp : ' + data.current.temp + '°F';
@@ -132,14 +154,21 @@ var displayCurrent = function (data, city) {
     UVindexELColor.classList.add('backgroundIndex');
     UVindexELColor.textContent = data.current.uvi;
     
+    
+
+
     CityEL.appendChild(TempEL)
     CityEL.appendChild(WindSpeedEL);
     CityEL.appendChild(HumidityEL)
     CityEL.appendChild(UVindexEL).appendChild(UVindexELColor)
     
-
+    ForecastEL.appendChild(DatesEl)
+    ForecastEL.appendChild(TempEL2);
+    ForecastEL.appendChild(WindSpeedEL2);
+    ForecastEL.appendChild(HumidityEL2);
 
 }
+
 
 
 searchBtn.addEventListener("click", submitHandler);
