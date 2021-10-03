@@ -74,6 +74,7 @@ var appendLastCity = function (city) {
           var CityEL = document.querySelector('.weather-info')
 
           var CityNameEL = document.createElement('h1');
+          CityNameEL.classList.add('icon')
           CityNameEL.textContent = data.name + moment().format("   (MMM Do YY)");
           
 
@@ -130,25 +131,28 @@ var appendLastCity = function (city) {
   };
   
 var displayCurrent = function (data, city) {
-    
+  // 5 day forecast h1 element. 
  var dayforecast = document.querySelector('.day-forecast');
  var days = document.createElement('h1')
  days.textContent= 'Five Day Forecast:'
  dayforecast.appendChild(days);
  
  
+ 
 
-  
+  // refrence to get icon from openweater icon list and append to created elements. 
   var iconcode = data.current.weather[0].icon;
   var iconurl = "http://openweathermap.org/img/w/" + iconcode + ".png";
-
+  var img = $('<img id="dynamic">'); //Equivalent: $(document.createElement('img'))
+  img.attr('src', iconurl);
+  img.appendTo('.icon');
   
   
 
     // city weather box selector.
      var CityEL = document.querySelector('.weather-info')
-     CityEL.classList.add('cityWeather') 
-    $('cityWeather').attr('src',iconurl)
+     
+    
     // day 1 forecast selectors. 
     var DatesEl =document.createElement('h4');
     DatesEl.textContent = moment().add(1, 'days').format('D/MM/YY')

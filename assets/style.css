@@ -3,7 +3,10 @@
   --card: #d0f2fd;
   --back: #a4bdc5;
 }
-
+.card {
+  white-space: wrap;
+  
+}
 p{
   height: 15%;
 }
