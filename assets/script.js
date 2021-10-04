@@ -7,7 +7,7 @@ var fiveDayForecast = document.querySelector(".card-weather");
 var inputEL = document.querySelector('#city-input')
 var lastCityBtn = document.querySelector(".previous");
 
-// var url ="https://api.openweathermap.org/data/2.5/forecast?q=" + city + ",us&limit=5&appid=0bc4f134f7113eaee48d311d5efa7749";
+
 
 
 
@@ -48,7 +48,7 @@ var submitHandler = function (event) {
 var saveSearch = function(){
   localStorage.setItem("cityInput", JSON.stringify(cityInput));
 };
-
+// Creates button for last city searched. 
 var appendLastCity = function (city) {
 
 
@@ -73,7 +73,7 @@ var appendLastCity = function (city) {
     return;
   }
 
-
+// gets the lat and lon of any city searched if it is a real city. 
  var getCityCords = function (city) {
 
         
@@ -117,7 +117,7 @@ var appendLastCity = function (city) {
  
  
  
- 
+ // function takes lat and lon of last call of api data and saves it to be used later in getting the current weather and forecast . 
  
  var setCurrentWeather = function(data) {
     var lon = data.coord.lon
@@ -268,7 +268,7 @@ HumidityEL6.textContent = 'Humidity ' + data.daily[4].humidity + ' %';
 
 
 
-
+// add class to created elements 
 var Day1 = document.querySelector('.card-body-day1')
 var Day2 = document.querySelector('.card-body-day2');
 var Day3 = document.querySelector('.card-body-day3');
@@ -341,7 +341,7 @@ Day5.classList.add('forecast');
     Day5.appendChild(WindSpeedEL6);
     Day5.appendChild(HumidityEL6);
 
-    var img = $('<img id="dynamic">'); //Equivalent: $(document.createElement('img'))
+    var img = $('<img id="dynamic">'); 
     img.attr('src', iconurl);
     img.appendTo('.icon');
 
@@ -365,6 +365,7 @@ Day5.classList.add('forecast');
     img5.attr('src', iconurl5);
     img5.appendTo('.icon5');
 
+    // Handles the colors for uv index. 
     var UV = data.current.uvi;
     console.log(UV);
     if (UV > 3 && UV < 6.99){
@@ -384,11 +385,7 @@ Day5.classList.add('forecast');
 
 }
 
-var reset = function() {
-
-  
-}
-
+// creates the gray buttons to allow searches to be done again upon click.
 var lastSearchBtn = function(lastSearch){
  
 
@@ -418,7 +415,7 @@ var LastCitySearch = function(event){
         inputEL.textContent='';
         inputEL.value='';
 
-  
+  // click listener for last city buttons 
   var city = event.target.getAttribute("input-city")
   if(city){
       
