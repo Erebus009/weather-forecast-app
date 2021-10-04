@@ -1,9 +1,11 @@
+var cityInput = [];
+
 var previousSearchEl = document.querySelector(".previous");
 var searchBtn = document.querySelector(".searchBtn");
 var cityWeatherEL = document.querySelector(".weather-info");
 var fiveDayForecast = document.querySelector(".card-weather");
 var inputEL = document.querySelector('#city-input')
-var grayButton = document.querySelector('.grayButton')
+var lastSearchButtonEl = document.querySelector("#past-search-buttons");
 
 // var url ="https://api.openweathermap.org/data/2.5/forecast?q=" + city + ",us&limit=5&appid=0bc4f134f7113eaee48d311d5efa7749";
 
@@ -16,7 +18,9 @@ var submitHandler = function (event) {
 
     var city = inputEL.value.trim();
     
+    
     if (city){
+      cityInput.unshift({city});
       var forecast = document.querySelector('.day-forecast')
       var Day1 = document.querySelector('.card-body-day1')
       var Day2 = document.querySelector('.card-body-day2');
@@ -35,15 +39,15 @@ var submitHandler = function (event) {
         inputEL.value='';
         appendLastCity(city);
         getCityCords(city);
-        
     } 
     
 };
+var saveSearch = function(){
+  localStorage.setItem("cityInput", JSON.stringify(cityInput));
+};
 
-// create button of last user input.
 var appendLastCity = function (city) {
 
-  console.log("test");
 
  
 
@@ -53,7 +57,11 @@ var appendLastCity = function (city) {
     var lastCity = document.createElement("button");
     lastCity.classList = "col-12 text-center text-light btn btn-secondary column mt-3 mb-3";
     lastCity.textContent = city;
-    lastCity.classList.add('grayButton')
+    lastCity.textContent = city;
+    lastCity.setAttribute("input-city",city)
+    lastCity.setAttribute("type", "submit");
+    
+    
 
     parent.appendChild(lastCity);
 
@@ -363,9 +371,26 @@ Day5.classList.add('forecast');
 
 }
 
+var lastSearchBtn = function(lastSearch){
+ 
+
+  lastSearchEl = document.createElement("button");
+  lastSearchEl.textContent = lastSearch;
+  lastSearchEl.setAttribute("input-city",lastSearch)
+  lastSearchEl.setAttribute("type", "submit");
+
+  lastSearchButtonEl.prepend(lastSearchEl);
+}
+
+var LastCitySearch = function(event){
+  var city = event.target.getAttribute("input-city")
+  if(city){
+      getCityCords(city);
+      displayCurrent(city);
+  }
+}
 
 
 
-
-// Search when button is clicked runs submit handler to gather api data about what city was searched. 
+// Search when button is clicked runs submit handler to gather api data about what city was searched.
 searchBtn.addEventListener("click", submitHandler);
