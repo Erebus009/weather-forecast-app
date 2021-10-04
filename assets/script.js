@@ -5,7 +5,7 @@ var searchBtn = document.querySelector(".searchBtn");
 var cityWeatherEL = document.querySelector(".weather-info");
 var fiveDayForecast = document.querySelector(".card-weather");
 var inputEL = document.querySelector('#city-input')
-var lastSearchButtonEl = document.querySelector("#past-search-buttons");
+var lastCityBtn = document.querySelector(".previous");
 
 // var url ="https://api.openweathermap.org/data/2.5/forecast?q=" + city + ",us&limit=5&appid=0bc4f134f7113eaee48d311d5efa7749";
 
@@ -37,8 +37,11 @@ var submitHandler = function (event) {
         CityEL.innerHTML='';
         inputEL.textContent='';
         inputEL.value='';
+        saveSearch()
         appendLastCity(city);
         getCityCords(city);
+       
+        
     } 
     
 };
@@ -58,6 +61,7 @@ var appendLastCity = function (city) {
     lastCity.classList = "col-12 text-center text-light btn btn-secondary column mt-3 mb-3";
     lastCity.textContent = city;
     lastCity.textContent = city;
+    lastCity.classList.add('lastCityBtn')
     lastCity.setAttribute("input-city",city)
     lastCity.setAttribute("type", "submit");
     
@@ -71,6 +75,9 @@ var appendLastCity = function (city) {
 
 
  var getCityCords = function (city) {
+
+        
+  
   url = 'https://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=0bc4f134f7113eaee48d311d5efa7749'
   console.log(url);
   fetch(url)
@@ -79,9 +86,11 @@ var appendLastCity = function (city) {
       response.json().then(function(data) {
           console.log(data);
           setCurrentWeather(data);
+
           var CityEL = document.querySelector('.weather-info')
 
           var CityNameEL = document.createElement('h1');
+          CityEL.innerHTML='';
           CityNameEL.classList.add('icon')
           CityNameEL.textContent = data.name + moment().format("   (MMM Do YY)");
           
@@ -139,12 +148,16 @@ var appendLastCity = function (city) {
   };
   
 var displayCurrent = function (data, city) {
+  
+    
+  
   // 5 day forecast h1 element. 
- var dayforecast = document.querySelector('.day-forecast');
- var days = document.createElement('h1')
 
- days.textContent= 'Five Day Forecast:'
- dayforecast.appendChild(days);
+        var dayforecast = document.querySelector('.day-forecast');
+        var days = document.createElement('h1')
+        dayforecast.innerHTML='';
+        days.textContent= 'Five Day Forecast:'
+        dayforecast.appendChild(days);
  
  
  
@@ -371,6 +384,11 @@ Day5.classList.add('forecast');
 
 }
 
+var reset = function() {
+
+  
+}
+
 var lastSearchBtn = function(lastSearch){
  
 
@@ -383,14 +401,38 @@ var lastSearchBtn = function(lastSearch){
 }
 
 var LastCitySearch = function(event){
+  var forecast = document.querySelector('.day-forecast')
+      var Day1 = document.querySelector('.card-body-day1')
+      var Day2 = document.querySelector('.card-body-day2');
+      var Day3 = document.querySelector('.card-body-day3');
+      var Day4 = document.querySelector('.card-body-day4');
+      var Day5 = document.querySelector('.card-body-day5');
+      var CityEL = document.querySelector('.weather-info')
+        forecast.innerHTML='';
+        Day1.innerHTML='';
+        Day2.innerHTML='';
+        Day3.innerHTML='';
+        Day4.innerHTML='';
+        Day5.innerHTML='';
+        CityEL.innerHTML='';
+        inputEL.textContent='';
+        inputEL.value='';
+
+  
   var city = event.target.getAttribute("input-city")
   if(city){
+      
       getCityCords(city);
       displayCurrent(city);
+      
+
   }
 }
 
 
 
 // Search when button is clicked runs submit handler to gather api data about what city was searched.
+lastCityBtn.addEventListener("click", LastCitySearch)
 searchBtn.addEventListener("click", submitHandler);
+
+
