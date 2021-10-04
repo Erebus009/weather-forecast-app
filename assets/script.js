@@ -184,7 +184,7 @@ var displayCurrent = function (data, city) {
     
     // day 1 forecast selectors. 
     var DatesEl =document.createElement('h4');
-    DatesEl.textContent = moment().add(1, 'days').format('D/MM/YY')
+    DatesEl.textContent = moment().add(1, 'days').format('MM/D/YY')
     
     var icon1= document.createElement('p')
     icon1.classList.add('icon1');
@@ -199,7 +199,7 @@ var displayCurrent = function (data, city) {
     HumidityEL2.textContent = 'Humidity ' + data.daily[0].humidity + ' %';
 // Day 2 forecast card div box elements
     var DatesEl2 =document.createElement('h4');
-    DatesEl2.textContent = moment().add(2,'days').format('D/MM/YY')
+    DatesEl2.textContent = moment().add(2,'days').format('MM/D/YY')
 
     var icon2= document.createElement('p')
     icon2.classList.add('icon2');
@@ -216,7 +216,7 @@ var displayCurrent = function (data, city) {
     //// Day 3 forecast element selectors and append child creators. 
 
     var DatesEl3 =document.createElement('h4');
-    DatesEl3.textContent = moment().add(3,'days').format('D/MM/YY')
+    DatesEl3.textContent = moment().add(3,'days').format('MM/D/YY')
 
     var icon3= document.createElement('p')
     icon3.classList.add('icon3')
@@ -233,7 +233,7 @@ var displayCurrent = function (data, city) {
     //// Day 4 Forcast element selectors and appends.
 
     var DatesEl4 =document.createElement('h4');
-    DatesEl4.textContent = moment().add(4,'days').format('D/MM/YY')
+    DatesEl4.textContent = moment().add(4,'days').format('MM/D/YY')
 
     var icon4= document.createElement('p')
     icon4.classList.add('icon4')
@@ -249,7 +249,7 @@ var displayCurrent = function (data, city) {
 //// Day 5 forecast element selectors and appends. 
 
 var DatesEl5 =document.createElement('h4');
-DatesEl5.textContent = moment().add(5,'days').format('D/MM/YY')
+DatesEl5.textContent = moment().add(5,'days').format('MM/D/YY')
 
 var icon5= document.createElement('p')
     icon5.classList.add('icon5')
